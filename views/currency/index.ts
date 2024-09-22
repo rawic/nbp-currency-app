@@ -1,0 +1,1 @@
+export { CurrencyView } from './currency';
