@@ -1,36 +1,113 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <a href="https://github.com/rawic/nbp-currency-app">
+    <img src="readme/logo.jpg" alt="NBP Currency App Logo">
+  </a>
+
+  <h3 align="center">NBP Currency App</h3>
+
+  <p align="center">
+    Web application to view and analyze currency exchange rates using the NBP (National Bank of Poland) public API.
+    <br />
+    <a href="https://nbp-currency-app.vercel.app/" target="_blank" rel="noopener noreferrer"><strong>Live demo »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/rawic/nbp-currency-app/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/rawic/nbp-currency-app/issues">Request Feature</a>
+  </p>
+</p>
+
+## About NBP Currency App
+
+<a align="center" href="https://github.com/rawic/nbp-currency-app" rel="nofollow noopener noreferrer" target="blank">
+  <img src="readme/app-screenshot.png" alt="NBP Currency App Screenshot" style="max-width: 100%;">
+</a>
+
+### Features
+
+- Display the current exchange rates fetched from the NBP API ✔️
+- View currency details and historical exchange rates ✔️
+- Interactive charts showing currency rate changes over the last 30 days ✔️
+- Date range picker for custom time period analysis ✔️
+- Currency converter between PLN and other currencies ✔️
+- Server and client-side conversion with live data ✔️
+
+### Built with
+
+- **Next.js** (App Router)
+- **React** (with TypeScript)
+- **Tailwind CSS** for styling
+- **Recharts** for interactive charts
+- **Zod** for form validation
+- **ESLint** and **Prettier** for code formatting
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js and Bun
+
+```sh
+npm install -g bun
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```sh
+git clone https://github.com/rawic/nbp-currency-app.git
+```
 
-## Learn More
+2. Navigate to the project directory
 
-To learn more about Next.js, take a look at the following resources:
+```sh
+cd nbp-currency-app
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Install dependencies
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+bun install
+```
 
-## Deploy on Vercel
+4. Create a `.env.local` file in the root directory and add the following environment variables:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+NEXT_PUBLIC_NBP_API_URL=https://api.nbp.pl/api/
+NEXT_PUBLIC_NBP_CURRENCY_MIN_DATE=2002-01-02
+NEXT_PUBLIC_NBP_CURRENCY_MAX_DATE_RANGE_DIFFERENCE=93
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Usage
+
+To start the development server:
+
+```sh
+yarn dev
+```
+
+To build the app for production:
+
+```sh
+bun run build
+```
+
+## Features Breakdown
+
+- **List of Currencies**: View all available currencies and their current average exchange rates.
+- **Currency Details**: Click on a currency to view detailed historical exchange rates and an interactive chart.
+- **Date Range Selector**: Select a custom date range to see how a currency's exchange rate has fluctuated.
+- **Currency Converter**: Convert amounts between PLN and selected currencies using live exchange rates. The conversion can be done on both the client-side and server-side.
+
+## License
+
+Distributed under the MIT License. See `LICENSE` for more information.
+
+## Contact
+
+Rafał Wichowski - [@rafalwichowski](https://twitter.com/rafalwichowski) - [hi@rawic.me](mailto:hi@rawic.me)
+
+Project Link: [https://github.com/rawic/nbp-currency-app](https://github.com/rawic/nbp-currency-app)
+
+[app-screenshot]: readme/app-screenshot.jpg
