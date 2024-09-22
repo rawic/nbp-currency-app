@@ -3,6 +3,14 @@ import { redirect } from 'next/navigation';
 import { convertCurrency } from '@/actions/convert-currency';
 import { getListOfCurrencies } from '@/queries/get-list-of-currencies';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Server-Side Currency Converter | NBP Currency App',
+  description:
+    'Convert currencies using the server-side currency converter for accurate results.',
+};
+
 export default async function ConverterPage({
   searchParams,
 }: {

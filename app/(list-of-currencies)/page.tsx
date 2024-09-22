@@ -2,6 +2,14 @@ import { getListOfCurrencies } from '@/queries/get-list-of-currencies';
 import { ExchangeratesTablesAOut } from '@/types/exchangerates-tables-a-out';
 import { TableRow } from '@/views/list-of-currencies';
 
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'List of Currencies | NBP Currency App',
+  description:
+    'Browse the list of current average exchange rates provided by the NBP API.',
+};
+
 let cachedData: ExchangeratesTablesAOut[number]['rates'] = [];
 
 const fetchData = async () => {

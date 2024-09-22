@@ -5,6 +5,20 @@ import { CURRENCY_COUNTRY_CODE_MAP } from '@/data/currency-country.data';
 import { getCurrencyData } from '@/queries/get-currency-data';
 import { CurrencyView } from '@/views/currency';
 
+import type { Metadata } from 'next';
+
+type Props = {
+  params: { currency: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { currency } = params;
+  return {
+    title: `${currency.toUpperCase()} Exchange Rate | NBP Currency App`,
+    description: `View detailed exchange rates and historical data for ${currency.toUpperCase()}.`,
+  };
+}
+
 type CurrencyDetailsProps = {
   params: {
     currency: string;
