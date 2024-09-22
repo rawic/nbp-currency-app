@@ -107,6 +107,8 @@ export const CurrencyConverter = ({ initialRates }: CurrencyConverterProps) => {
             onChange={(e) => setAmount(Number(e.target.value))}
             placeholder="Amount"
             min="0"
+            step=".01"
+            required
           />
           <Select
             value={currency}
