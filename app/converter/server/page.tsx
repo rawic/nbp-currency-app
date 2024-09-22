@@ -50,6 +50,7 @@ export default async function ConverterPage({
             className="max-sm:w-full"
             placeholder="Amount"
             min="0"
+            step=".01"
             required
           />
           <Select name="currency" defaultValue={currency} required>
