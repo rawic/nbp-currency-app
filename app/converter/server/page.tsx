@@ -49,7 +49,7 @@ export default async function ConverterPage({
         method="GET"
         className="mb-6 flex flex-col gap-4"
       >
-        <div className="flex gap-4">
+        <div className="flex flex-wrap gap-4">
           <input
             type="number"
             name="amount"
