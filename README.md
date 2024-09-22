@@ -23,16 +23,29 @@
   <img src="readme/app-screenshot.png" alt="NBP Currency App Screenshot" style="max-width: 100%;">
 </a>
 
-### Features
+### ✨ Features
 
-- Display the current exchange rates fetched from the NBP API ✔️
-- View currency details and historical exchange rates ✔️
-- Interactive charts showing currency rate changes over the last 30 days ✔️
-- Date range picker for custom time period analysis ✔️
-- Currency converter between PLN and other currencies ✔️
-- Server and client-side conversion with live data ✔️
+- ✅ Display the current exchange rates fetched from the NBP API
+- ✅ View currency details and historical exchange rates
+- ✅ Interactive charts showing currency rate changes over the last 30 days
+- ✅ Date range picker for custom time period analysis
+- ✅ Currency converter between PLN and other currencies
+- ✅ Server and client-side conversion with live data
 
-### Built with
+### 🔧 Improvements / Future Enhancements
+
+This section outlines potential improvements that could be implemented in the project to enhance its functionality, performance, and maintainability:
+
+- **Improve API Error Handling**: Enhance error handling in terms of UX/UI to give users a clearer understanding when issues occur.
+- **Skeleton Loading State**: Add skeletons or loading indicators when fetching data to improve the user experience.
+- **Leverage Streaming More**: Increase the use of streaming for data fetching, as currently some parts of the content are blocked while waiting for data.
+- **Separate Fetchers into Files**: Move data fetching logic into separate files to adhere to better code organization and separation of concerns.
+- **Testing**: Introduce at least unit tests to ensure code quality and reliability.
+- **API Rate Limiting**: Implement mechanisms to prevent users from spamming the API with too many requests.
+- **Husky for Pre-Commit Hooks**: Use Husky to run linting and Prettier checks on each commit to maintain code style and quality automatically.
+- **Reusable Components**: Add more reusable components (e.g., buttons) to improve maintainability and consistency across the app.
+
+### 🛠️ Built with
 
 - **Next.js** (App Router)
 - **React** (with TypeScript)
@@ -41,7 +54,7 @@
 - **Zod** for form validation
 - **ESLint** and **Prettier** for code formatting
 
-## Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -110,4 +123,4 @@ Rafał Wichowski - [@rafalwichowski](https://twitter.com/rafalwichowski) - [hi@r
 
 Project Link: [https://github.com/rawic/nbp-currency-app](https://github.com/rawic/nbp-currency-app)
 
-[app-screenshot]: readme/app-screenshot.jpg
+[app-screenshot]: readme/app-screenshot.png
