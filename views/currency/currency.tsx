@@ -1,4 +1,5 @@
-import { redirect } from 'next/navigation';
+import { dateFilter } from '@/actions/date-filter';
+import { getCurrencyData } from '@/queries/get-currency-data';
 
 import { Chart } from './chart/chart';
 import { CurrencyViewProps } from './currency.types';
@@ -8,8 +9,10 @@ const NBP_MIN_DATE =
 const NBP_MAX_DATE_RANGE_DIF =
   process.env.NEXT_PUBLIC_NBP_CURRENCY_MAX_DATE_RANGE_DIFFERENCE || 93;
 
-export const CurrencyView = (props: CurrencyViewProps) => {
-  const { currency, initialRates, startDate, endDate, error } = props;
+export const CurrencyView = async (props: CurrencyViewProps) => {
+  const { currency, startDate, endDate, error } = props;
+
+  const initialRates = await getCurrencyData(currency, startDate, endDate);
 
   const chartData = initialRates.map((rate) => ({
     date: rate.effectiveDate,
@@ -21,24 +24,9 @@ export const CurrencyView = (props: CurrencyViewProps) => {
   const minAvailableDate = new Date(NBP_MIN_DATE).toISOString().split('T')[0];
   const maxAvailableDate = new Date().toISOString().split('T')[0];
 
-  async function handleDateSubmit(formData: FormData) {
+  async function handleSubmit(formData: FormData) {
     'use server';
-
-    const startDate = formData.get('startDate') as string;
-    const endDate = formData.get('endDate') as string;
-
-    const start = new Date(startDate);
-    const end = new Date(endDate);
-
-    const difference = Math.floor(
-      (end.getTime() - start.getTime()) / (1000 * 60 * 60 * 24),
-    );
-
-    if (difference > Number(NBP_MAX_DATE_RANGE_DIF)) {
-      return redirect(`/${currency}?error=date-range-exceeded`);
-    }
-
-    redirect(`/${currency}?start=${startDate}&end=${endDate}`);
+    await dateFilter(formData, currency);
   }
 
   return (
@@ -49,7 +37,7 @@ export const CurrencyView = (props: CurrencyViewProps) => {
 
       {/* Date Range Picker Form */}
       <form
-        action={handleDateSubmit}
+        action={handleSubmit}
         className="mb-6 flex items-center gap-4 max-sm:flex-col"
       >
         <div className="flex gap-4">

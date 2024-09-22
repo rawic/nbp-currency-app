@@ -1,15 +1,15 @@
 'use client';
 
 import {
-    Area,
-    CartesianGrid,
-    ComposedChart,
-    Line,
-    ResponsiveContainer,
-    Tooltip,
-    TooltipProps,
-    XAxis,
-    YAxis,
+  Area,
+  CartesianGrid,
+  ComposedChart,
+  Line,
+  ResponsiveContainer,
+  Tooltip,
+  TooltipProps,
+  XAxis,
+  YAxis,
 } from 'recharts';
 
 import { ChartProps } from './chart.types';

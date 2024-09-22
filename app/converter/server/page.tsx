@@ -1,6 +1,4 @@
-import { redirect } from 'next/navigation';
-
-import { convertCurrency } from '@/actions/convert-currency';
+import { currencyConversion } from '@/actions/currency-conversion';
 import { getListOfCurrencies } from '@/queries/get-list-of-currencies';
 
 import type { Metadata } from 'next';
@@ -11,38 +9,24 @@ export const metadata: Metadata = {
     'Convert currencies using the server-side currency converter for accurate results.',
 };
 
-export default async function ConverterPage({
-  searchParams,
-}: {
+type ConverterPageProps = {
   searchParams?: {
     amount?: string;
     currency?: string;
-    conversionType?: string;
+    conversionType?: 'PLN_TO_CUR' | 'CUR_TO_PLN';
     result?: string;
   };
-}) {
+};
+
+export default async function ConverterPage({
+  searchParams,
+}: ConverterPageProps) {
   const amount = searchParams?.amount || '';
   const currency = searchParams?.currency || 'EUR';
   const conversionType = searchParams?.conversionType || 'PLN_TO_CUR';
   const convertedResult = searchParams?.result || null;
   const list = await getListOfCurrencies();
   const getCurrencies = list.map((currency) => currency.code);
-
-  async function handleSubmit(formData: FormData) {
-    'use server';
-
-    const amount = Number(formData.get('amount'));
-    const currency = formData.get('currency') as string;
-    const conversionType = formData.get('conversionType') as
-      | 'PLN_TO_CUR'
-      | 'CUR_TO_PLN';
-
-    const result = await convertCurrency(amount, currency, conversionType);
-
-    redirect(
-      `/converter/server?amount=${amount}&currency=${currency}&conversionType=${conversionType}&result=${result}`,
-    );
-  }
 
   return (
     <>
@@ -53,7 +37,7 @@ export default async function ConverterPage({
       </div>
 
       <form
-        action={handleSubmit}
+        action={currencyConversion}
         method="GET"
         className="mb-6 flex flex-col gap-4"
       >
@@ -100,7 +84,10 @@ export default async function ConverterPage({
 
       {convertedResult && (
         <div className="mt-4 text-white">
-          <p>Conversion Result: {convertedResult}</p>
+          <p>
+            Conversion Result: {convertedResult}{' '}
+            {conversionType === 'PLN_TO_CUR' ? currency : 'PLN'}
+          </p>
         </div>
       )}
     </>

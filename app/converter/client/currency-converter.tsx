@@ -14,11 +14,11 @@ const currencySchema = z.object({
   conversionType: z.enum(['PLN_TO_CUR', 'CUR_TO_PLN']),
 });
 
-export const CurrencyConverter = ({
-  initialRates,
-}: {
+type CurrencyConverterProps = {
   initialRates: { [key: string]: number };
-}) => {
+};
+
+export const CurrencyConverter = ({ initialRates }: CurrencyConverterProps) => {
   const [amount, setAmount] = useState(1);
   const [currency, setCurrency] = useState('EUR');
   const [conversionType, setConversionType] = useState<

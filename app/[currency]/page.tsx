@@ -1,12 +1,11 @@
 import Link from 'next/link';
+import { Suspense } from 'react';
 import { CircleFlag } from 'react-circle-flags';
 
 import { CURRENCY_COUNTRY_CODE_MAP } from '@/data/currency-country.data';
-import { getCurrencyData } from '@/queries/get-currency-data';
 import { CurrencyView } from '@/views/currency';
 
 import type { Metadata } from 'next';
-
 type Props = {
   params: { currency: string };
 };
@@ -35,8 +34,6 @@ async function CurrencyDetailsPage({
   const endDate = searchParams.end || '';
   const error = searchParams.error || '';
 
-  const rates = await getCurrencyData(currency, startDate, endDate);
-
   return (
     <>
       <div className="flex flex-col items-start gap-4">
@@ -59,13 +56,18 @@ async function CurrencyDetailsPage({
           <h1 className="text-3xl font-semibold text-white">{currency}</h1>
         </div>
 
-        <CurrencyView
-          currency={currency}
-          initialRates={rates}
-          startDate={startDate}
-          endDate={endDate}
-          error={error}
-        />
+        <Suspense
+          fallback={
+            <p className="mt-4 text-white sm:mt-8">Loading Currency View...</p>
+          }
+        >
+          <CurrencyView
+            currency={currency}
+            startDate={startDate}
+            endDate={endDate}
+            error={error}
+          />
+        </Suspense>
       </div>
     </>
   );

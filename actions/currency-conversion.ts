@@ -1,12 +1,17 @@
+'use server';
+
+import { redirect } from 'next/navigation';
+
 import { ROUTES } from '@/lib/api/routes';
 
 const { NEXT_PUBLIC_NBP_API_URL: apiUrl } = process.env;
 
-export async function convertCurrency(
-  amount: number,
-  currency: string,
-  conversionType: 'PLN_TO_CUR' | 'CUR_TO_PLN',
-) {
+export async function currencyConversion(formData: FormData) {
+  const amount = Number(formData.get('amount'));
+  const currency = formData.get('currency') as string;
+  const conversionType = formData.get('conversionType') as
+    | 'PLN_TO_CUR'
+    | 'CUR_TO_PLN';
   const endpoint = ROUTES.CURRENCY_CURRENT_RATE;
   const path = `${apiUrl}${endpoint}`.replace('{currency}', currency);
 
@@ -23,5 +28,7 @@ export async function convertCurrency(
     result = amount * exchangeRate;
   }
 
-  return result.toFixed(2);
+  redirect(
+    `/converter/server?amount=${amount}&currency=${currency}&conversionType=${conversionType}&result=${result.toFixed(2)}`,
+  );
 }
