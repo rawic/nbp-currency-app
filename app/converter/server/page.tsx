@@ -1,5 +1,6 @@
 import { currencyConversion } from '@/actions/currency-conversion';
 import { getListOfCurrencies } from '@/queries/get-list-of-currencies';
+import { Input, Select } from '@/ui';
 
 import type { Metadata } from 'next';
 
@@ -42,36 +43,26 @@ export default async function ConverterPage({
         className="mb-6 flex flex-col gap-4"
       >
         <div className="flex flex-wrap gap-4">
-          <input
+          <Input
             type="number"
             name="amount"
             defaultValue={amount}
-            className="rounded-md border border-gray-600 bg-slate-800 py-2 pl-3 text-white max-sm:w-full"
+            className="max-sm:w-full"
             placeholder="Amount"
             min="0"
             required
           />
-          <select
-            name="currency"
-            defaultValue={currency}
-            className="rounded-md border border-gray-600 bg-slate-800 py-2 pl-3 pr-8 text-white"
-            required
-          >
+          <Select name="currency" defaultValue={currency} required>
             {getCurrencies.map((currency) => (
               <option key={currency} value={currency}>
                 {currency}
               </option>
             ))}
-          </select>
-          <select
-            name="conversionType"
-            defaultValue={conversionType}
-            className="rounded-md border border-gray-600 bg-slate-800 py-2 pl-3 pr-8 text-white"
-            required
-          >
+          </Select>
+          <Select name="conversionType" defaultValue={conversionType} required>
             <option value="PLN_TO_CUR">PLN to Currency</option>
             <option value="CUR_TO_PLN">Currency to PLN</option>
-          </select>
+          </Select>
         </div>
 
         <button

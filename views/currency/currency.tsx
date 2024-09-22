@@ -1,5 +1,6 @@
 import { dateFilter } from '@/actions/date-filter';
 import { getCurrencyData } from '@/queries/get-currency-data';
+import { Input } from '@/ui';
 
 import { Chart } from './chart/chart';
 import { CurrencyViewProps } from './currency.types';
@@ -41,19 +42,17 @@ export const CurrencyView = async (props: CurrencyViewProps) => {
         className="mb-6 flex items-center gap-4 max-sm:flex-col"
       >
         <div className="flex gap-4">
-          <input
+          <Input
             type="date"
             name="startDate"
-            className="focus:outline-offset-3 rounded-md border border-none bg-slate-800 px-3 py-2 text-white outline-none focus:border-none focus:outline-2 focus:outline-indigo-600 focus:ring-0"
             placeholder="Start Date"
             defaultValue={startDateDefaultValue}
             min={minAvailableDate}
             max={maxAvailableDate}
           />
-          <input
+          <Input
             type="date"
             name="endDate"
-            className="rounded-md border border-none bg-slate-800 px-3 py-2 text-white"
             placeholder="End Date"
             defaultValue={endDateDefaultValue}
             min={minAvailableDate}

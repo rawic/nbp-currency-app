@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { z } from 'zod';
 
 import { getExchangeRates } from '@/queries/get-exchange-rates';
+import { Input, Select } from '@/ui';
 
 const currencySchema = z.object({
   amount: z
@@ -100,26 +101,24 @@ export const CurrencyConverter = ({ initialRates }: CurrencyConverterProps) => {
 
       <form className="mb-6 flex flex-col gap-4">
         <div className="flex w-full gap-4">
-          <input
+          <Input
             type="number"
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}
-            className="rounded-md border border-gray-600 bg-slate-800 py-2 pl-3 text-white max-sm:w-full"
             placeholder="Amount"
             min="0"
           />
-          <select
+          <Select
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
-            className="rounded-md border border-gray-600 bg-slate-800 py-2 pl-3 pr-8 text-white"
           >
             {getCurrencies.map((currency) => (
               <option key={currency} value={currency}>
                 {currency}
               </option>
             ))}
-          </select>
-          <select
+          </Select>
+          <Select
             value={conversionType}
             onChange={(e) =>
               setConversionType(e.target.value as 'PLN_TO_CUR' | 'CUR_TO_PLN')
@@ -128,7 +127,7 @@ export const CurrencyConverter = ({ initialRates }: CurrencyConverterProps) => {
           >
             <option value="PLN_TO_CUR">PLN to {currency}</option>
             <option value="CUR_TO_PLN">{currency} to PLN</option>
-          </select>
+          </Select>
         </div>
       </form>
 
