@@ -97,7 +97,7 @@ NEXT_PUBLIC_NBP_CURRENCY_MAX_DATE_RANGE_DIFFERENCE=93
 To start the development server:
 
 ```sh
-yarn dev
+bun run dev
 ```
 
 To build the app for production:
