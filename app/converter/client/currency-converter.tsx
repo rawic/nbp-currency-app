@@ -106,7 +106,7 @@ export const CurrencyConverter = ({ initialRates }: CurrencyConverterProps) => {
             value={amount}
             onChange={(e) => setAmount(Number(e.target.value))}
             placeholder="Amount"
-            className="w-full"
+            className="max-sm:w-full"
             min="0"
             step=".01"
             required

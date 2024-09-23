@@ -14,6 +14,7 @@ export const TableRow = (props: TableRowProps) => {
         <Link
           href={`/${code}`}
           className="flex items-center gap-x-4 whitespace-nowrap rounded-l-lg px-6 py-4 text-sm font-medium"
+          prefetch={true}
         >
           <CircleFlag
             countryCode={CURRENCY_COUNTRY_CODE_MAP[code].toLowerCase()}
@@ -24,7 +25,11 @@ export const TableRow = (props: TableRowProps) => {
         </Link>
       </td>
       <td>
-        <Link href={`/${code}`} className="whitespace-nowrap px-6 py-4 text-sm">
+        <Link
+          href={`/${code}`}
+          className="whitespace-nowrap px-6 py-4 text-sm"
+          prefetch={true}
+        >
           {code}
         </Link>
       </td>
@@ -32,6 +37,7 @@ export const TableRow = (props: TableRowProps) => {
         <Link
           href={`/${code}`}
           className="whitespace-nowrap rounded-r-lg px-6 py-4 text-sm"
+          prefetch={true}
         >
           {mid}
         </Link>
